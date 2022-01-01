@@ -1,0 +1,105 @@
+.main-content {
+    background: #e6e3dc;
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    font-size: 50px;
+    color: #1e2144;
+    text-align: center;
+    margin-top: 100px;
+    float: left;
+    width: 100%;
+    font-family: San-Sirf;
+}
+
+.form-container {
+    margin: 50 33%;
+    display: block;
+    float: left;
+    border: 5px #e6e3dc solid;
+    color: #1e2144;
+    border-radius: 20.5px;
+    padding: 10px;
+    background: #80c1b2;
+    height: 400px;
+    width: 33%;
+}
+
+.note {
+    font-size: 19px;
+    margin: 30px 10px;
+    color: #1e2144;
+}
+
+.warning {
+    color: yellow;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.info {
+    color: green;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.supported-format {
+    text-align: center;
+    font-size:13px;
+}
+
+.upload-form {
+    float: none;
+    margin: 50px auto;
+    width: 72%;
+    border: 1px solid #1e2144;
+    padding: 5px;
+}
+
+
+.upload-button {
+    background: #1e2144;
+    color: #e6e3dc;
+    padding: 10px;
+    border-radius: 30px;
+    width: 120px;
+}
+
+
+.file-input {
+    background: #e6e3dc;
+    margin-right: 12px;
+    height: 45px;
+    padding: 3px;
+    color: #1e2144;
+    width: 285px;
+}
+
+.file-input::file-selector-button {
+    background: #1e2144;
+    color: #e6e3dc;
+    padding: 5px;
+    width: 100px;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: gray;
+    opacity: 0.5;
+    position: absolute;
+}
+
+.loading-image {
+    position: absolute;
+    top: 35%;
+    left: 43%;
+}
