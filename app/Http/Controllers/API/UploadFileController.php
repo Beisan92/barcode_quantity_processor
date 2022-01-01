@@ -34,7 +34,7 @@ class UploadFileController extends Controller {
             $path = $file->store('files');
             $name = $file->getClientOriginalName();
             
-            try {
+           // try {
                 $dataArray = self::handleFile($path, $name);
 
                 foreach ($dataArray as $key => $value) {
@@ -49,19 +49,19 @@ class UploadFileController extends Controller {
                         $save->save();
                     }
                 } 
-            } catch (ValidationException $e) {
-                $success = false;
-                $this->errorMsg = "Unexpected Error occurred, please try again later";
-            } catch (ValueError $e) {
-                $success = false;
-                $this->errorMsg = "Unexpected Error occurred, please try a different file or try again later";
-            } catch (Throwable $e) {
-                $success = false;
-                $this->errorMsg = "Unexpected Error occurred, please try again later";
-            } catch (Exception $e) {
-                $success = false;
-                $this->errorMsg = "Unexpected Error occurred, please try again later";
-            }
+            // } catch (ValidationException $e) {
+            //     $success = false;
+            //     $this->errorMsg = "Unexpected Error occurred, please try again later";
+            // } catch (ValueError $e) {
+            //     $success = false;
+            //     $this->errorMsg = "Unexpected Error occurred, please try a different file or try again later";
+            // } catch (Throwable $e) {
+            //     $success = false;
+            //     $this->errorMsg = "Unexpected Error occurred, please try again later";
+            // } catch (Exception $e) {
+            //     $success = false;
+            //     $this->errorMsg = "Unexpected Error occurred, please try again later";
+            // }
               
             return response()->json([
                 "success" => $success,
