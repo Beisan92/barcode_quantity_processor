@@ -52,7 +52,7 @@
             "php artisan clear-compiled",
             "ln -sr /storage/app/public public/storage",
             "chmod -R 777 public/",
-            "chmod -R 775 storage/"
+            "chmod -R 777 public/storage/"
         ]
     },
     "extra": {
