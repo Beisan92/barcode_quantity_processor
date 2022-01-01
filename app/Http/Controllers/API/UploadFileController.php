@@ -34,7 +34,7 @@ class UploadFileController extends Controller {
             $path = $file->store('files');
             $name = $file->getClientOriginalName();
             
-           // try {
+          //  try {
                 $dataArray = self::handleFile($path, $name);
 
                 foreach ($dataArray as $key => $value) {
@@ -82,7 +82,7 @@ class UploadFileController extends Controller {
         } else {
             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         }
-        $storagePath  = "/storage/app/public/";//Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
+        $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
         $filePath = $storagePath .  $path;
         echo $filePath . "xxxxxxxx \n" . $storagePath . "\n";
         $spreadsheet = $reader->load($filePath);
