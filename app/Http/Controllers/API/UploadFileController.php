@@ -20,6 +20,7 @@ class UploadFileController extends Controller {
     public $errorMsg;
 
     public function upload(Request $request) {
+       $count = 0;
        $validator = Validator::make($request->all(),[ 
             'file' => 'required|mimes:csv,xls,xlsx|max:50000',
         ]);   
@@ -35,7 +36,6 @@ class UploadFileController extends Controller {
             $name = $file->getClientOriginalName();
             try {
                 $dataArray = self::handleFile($path, $name);
-                $count = 0;
                 foreach ($dataArray as $key => $value) {
                     $record = BarcodeQuantity::firstWhere('barcode', $key);
                     if ($record != null) {
