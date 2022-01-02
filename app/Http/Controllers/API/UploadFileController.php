@@ -106,7 +106,6 @@ class UploadFileController extends Controller {
                 }
             }
         } else { 
-            echo "Error Occurred!";
             throw ValidationException::withMessages([
                 $filePath => ["The fils is invalid format or doesn't exist!"],
             ]);

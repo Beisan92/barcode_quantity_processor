@@ -48,7 +48,6 @@ class App extends Component {
     }; 
      
     onFileUpload = () => {
-      
       this.setState({disableUpload: true,
         processing: true
       });
