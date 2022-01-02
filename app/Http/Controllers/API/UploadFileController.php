@@ -39,7 +39,10 @@ class UploadFileController extends Controller {
                 $dataArray = self::handleFile($path, $name);
 
                 foreach ($dataArray as $key => $value) {
+                    echo $key . "=>" . $value . "\n";
                     $record = BarcodeQuantity::firstWhere('barcode', $key);
+                    echo $record;
+
                     if ($record != null) {
                         $record->quantity= (int)$value + (int)$record->quantity;
                         $record->save();
@@ -103,7 +106,6 @@ class UploadFileController extends Controller {
                     } else {
                         $this->errorMsg = "Please note that some of the records have been ignored due to an empty barcode or invalid quantity number.";
                     }
-                    echo $sheetData[$i][0] . " \n" . $dataArray[$sheetData[$i][0]] . "\n" . $sheetData[$i][1];
                 } else {
                     $this->errorMsg = "Please note that some of the records have been ignored due to invalid file format (Barcode, Quantity)";
                 }
