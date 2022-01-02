@@ -31,9 +31,10 @@ class UploadFileController extends Controller {
         $success = true;
 
         if ($file = $request->file('file')) {
-            $path = $file->store('files');
+            //$path = $file->store('files');
+            $path = Storage::disk('public')->put('files', $file);
             $name = $file->getClientOriginalName();
-            
+            echo  $path;
             try {
                 $dataArray = self::handleFile($path, $name);
 
