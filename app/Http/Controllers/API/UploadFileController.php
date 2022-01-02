@@ -43,11 +43,13 @@ class UploadFileController extends Controller {
                     if ($record != null) {
                         $record->quantity= (int)$value + (int)$record->quantity;
                         $record->save();
+                        echo "record existed!" . $key . "\n";
                     } else {
                         $save = new BarcodeQuantity();
                         $save->barcode = $key;
                         $save->quantity= $value;
                         $save->save();
+                        echo "record new!" . $key . "\n";
                     }
                 } 
             } catch (ValidationException $e) {
