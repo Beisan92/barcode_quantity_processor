@@ -31,47 +31,42 @@ class UploadFileController extends Controller {
         $success = true;
 
         if ($file = $request->file('file')) {
-            //$path = $file->store('files');
             $path = Storage::disk('public')->put('files', $file);
             $name = $file->getClientOriginalName();
-            echo  $path;
-         //   try {
+            try {
                 $dataArray = self::handleFile($path, $name);
-
+                $count = 0;
                 foreach ($dataArray as $key => $value) {
-                    echo $key . "=>" . $value . "\n";
                     $record = BarcodeQuantity::firstWhere('barcode', $key);
-                    echo $record;
-
                     if ($record != null) {
                         $record->quantity= (int)$value + (int)$record->quantity;
                         $record->save();
-                        echo "record existed!" . $key . "\n";
                     } else {
                         $save = new BarcodeQuantity();
                         $save->barcode = $key;
                         $save->quantity= $value;
                         $save->save();
-                        echo "record new!" . $key . "\n";
                     }
+                    $count++;
                 } 
-            // } catch (ValidationException $e) {
-            //     $success = false;
-            //     $this->errorMsg = "Unexpected Error occurred, please try again later";
-            // } catch (ValueError $e) {
-            //     $success = false;
-            //     $this->errorMsg = "Unexpected Error occurred, please try a different file or try again later";
-            // } catch (Throwable $e) {
-            //     $success = false;
-            //     $this->errorMsg = "Unexpected Error occurred, please try again later";
-            // } catch (Exception $e) {
-            //     $success = false;
-            //     $this->errorMsg = "Unexpected Error occurred, please try again later";
-            // }
+            } catch (ValidationException $e) {
+                $success = false;
+                $this->errorMsg = "Unexpected Error occurred, please try again later";
+            } catch (ValueError $e) {
+                $success = false;
+                $this->errorMsg = "Unexpected Error occurred, please try a different file or try again later";
+            } catch (Throwable $e) {
+                $success = false;
+                $this->errorMsg = "Unexpected Error occurred, please try again later";
+            } catch (Exception $e) {
+                $success = false;
+                $this->errorMsg = "Unexpected Error occurred, please try again later";
+            }
               
             return response()->json([
                 "success" => $success,
-                "message" => $this->errorMsg
+                "message" => $this->errorMsg,
+                "updated" => $count
             ]);
   
         } else {

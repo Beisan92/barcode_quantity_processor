@@ -5373,7 +5373,8 @@ var App = /*#__PURE__*/function (_Component) {
       file: '',
       className: 'info',
       disableUpload: true,
-      processing: false
+      processing: false,
+      updatedRecords: -1
     });
 
     _defineProperty(_assertThisInitialized(_this), "onFileChange", function (event) {
@@ -5397,13 +5398,15 @@ var App = /*#__PURE__*/function (_Component) {
           invalidTypeMsg: "Sorry, " + event.target.files[0].name + " is invalid, allowed extensions are: " + _this.state.validFileExtensions.join(", "),
           selectedFile: null,
           className: "error",
-          disableUpload: true
+          disableUpload: true,
+          updatedRecords: -1
         });
       } else {
         _this.setState({
           invalidTypeMsg: "",
           selectedFile: event.target.files[0],
-          disableUpload: false
+          disableUpload: false,
+          updatedRecords: -1
         });
       }
     });
@@ -5445,7 +5448,8 @@ var App = /*#__PURE__*/function (_Component) {
 
           _this.setState({
             disableUpload: false,
-            processing: false
+            processing: false,
+            updatedRecords: response.data.updated
           });
         }, function (error) {
           _this.setState({
@@ -5495,9 +5499,12 @@ var App = /*#__PURE__*/function (_Component) {
               disabled: this.state.disableUpload,
               children: "Upload"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: this.state.className,
-            children: this.state.invalidTypeMsg
+            children: [this.state.invalidTypeMsg, this.state.updatedRecords >= 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "info",
+              children: [" ", this.state.updatedRecords, " records have been added or updated"]
+            })]
           })]
         })]
       });

@@ -11,7 +11,8 @@ class App extends Component {
       file: '',
       className: 'info',
       disableUpload: true,
-      processing: false
+      processing: false,
+      updatedRecords: -1
     }; 
      
     onFileChange = event => { 
@@ -32,12 +33,14 @@ class App extends Component {
               + this.state.validFileExtensions.join(", "),
               selectedFile: null,
               className: "error",
-              disableUpload: true
+              disableUpload: true,
+              updatedRecords: -1
             });
       } else {
           this.setState({invalidTypeMsg: "",
           selectedFile: event.target.files[0],
-          disableUpload: false
+          disableUpload: false,
+          updatedRecords: -1
         });
       }
 
@@ -71,7 +74,8 @@ class App extends Component {
             });
           }
           this.setState({disableUpload: false,
-            processing: false});
+            processing: false,
+            updatedRecords: response.data.updated});
         }, (error) => {
           this.setState({className: "error",
           disableUpload: false,
@@ -97,7 +101,11 @@ class App extends Component {
                     Upload
                   </button> 
               </div> 
-            <div className={this.state.className}>{this.state.invalidTypeMsg}</div>
+            <div className={this.state.className}>{this.state.invalidTypeMsg}
+              { this.state.updatedRecords >= 0 &&
+                <div className="info"> {this.state.updatedRecords} records have been added or updated</div>
+              }
+            </div>
           </div>
         </div> 
       ); 
