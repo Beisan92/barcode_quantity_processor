@@ -84,7 +84,7 @@ class UploadFileController extends Controller {
             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         }
         $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
-        $filePath = $storagePath . "public/" .  $path;
+        $filePath = $storagePath .  $path;
         echo $filePath . "xxxxxxxx \n" . $storagePath . "\n";
         $spreadsheet = $reader->load($filePath);
         $sheetData = $spreadsheet->getActiveSheet()->toArray();
