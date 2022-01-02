@@ -87,7 +87,7 @@ class UploadFileController extends Controller {
         }
         $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
         $filePath = $storagePath .  $path;
-        echo $filePath . "xxxxxxxx \n" . $storagePath . "\n";
+        
         $spreadsheet = $reader->load($filePath);
         $sheetData = $spreadsheet->getActiveSheet()->toArray();
         
@@ -103,11 +103,13 @@ class UploadFileController extends Controller {
                     } else {
                         $this->errorMsg = "Please note that some of the records have been ignored due to an empty barcode or invalid quantity number.";
                     }
+                    echo $sheetData[$i][0] . " \n" . $dataArray[$sheetData[$i][0]] . "\n" . $sheetData[$i][1];
                 } else {
                     $this->errorMsg = "Please note that some of the records have been ignored due to invalid file format (Barcode, Quantity)";
                 }
             }
         } else { 
+            echo "Error Occurred!";
             throw ValidationException::withMessages([
                 $filePath => ["The fils is invalid format or doesn't exist!"],
             ]);
