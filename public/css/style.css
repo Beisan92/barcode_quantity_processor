@@ -103,3 +103,62 @@
     top: 35%;
     left: 43%;
 }
+
+@media (min-width: 700px) and (max-width:1300px) { 
+    .form-container {
+        margin: 50px 12%;
+        width: 80%;
+    }
+
+    .file-input::file-selector-button {
+        padding: 5px;
+        width: 100px;
+    }
+
+    .file-input {
+        width: 250px;
+    }
+
+    .upload-button {
+        padding: 15px;
+        width: 120px;
+    }
+
+    .upload-form {
+        width: 80%;
+    }
+
+    .loading-image {
+        left: 30%;
+    }
+ }
+
+
+ @media (max-width: 700px) { 
+    .form-container {
+        margin: 50px 5px;
+        width: 97%;
+    }
+
+    .file-input::file-selector-button {
+        padding: 5px;
+        width: 80px;
+    }
+
+    .file-input {
+        width: 200px;
+    }
+
+    .upload-button {
+        padding: 5px;
+        width: 100px;
+    }
+
+    .upload-form {
+        width: 100%;
+    }
+
+    .loading-image {
+        left: 30%;
+    }
+  }
